@@ -1,4 +1,4 @@
-import axiosInstance from '../utils/AxiosInstance';
+import axiosInstance from '../utils/axiosInstance';
 
 // Register User
 export const registerUser = async (userData) => {
@@ -17,6 +17,7 @@ export const loginUser = async (userData) => {
     const response = await axiosInstance.post('token/', userData);
     localStorage.setItem('growthness_access_token', response.data.access);
     localStorage.setItem('growthness_refresh_token', response.data.refresh);
+    axiosInstance.defaults.headers['Authorization'] = `Bearer ${ response.data.access }`;
     return response.data;
   } catch (error) {
     console.error('Login error:', error);

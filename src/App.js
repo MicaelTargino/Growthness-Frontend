@@ -5,6 +5,9 @@ import Marketing from './pages/Marketing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
+import Logout from './pages/Logout';
+import PasswordResetRequest from './pages/PasswordResetRequest';
+import PasswordResetConfirm from './pages/PasswordResetConfirm';
 const App = () => {
     return (
         <Router>
@@ -13,6 +16,9 @@ const App = () => {
                 <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/password-reset-request" element={<PasswordResetRequest />} />
+                <Route path="/reset-password/:uid/:token" element={<PasswordResetConfirm />} />
             </Routes>
         </Router>
     );
