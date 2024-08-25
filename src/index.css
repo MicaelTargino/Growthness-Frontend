@@ -1,3 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+--dark-purple: #240115ff;
+--rusty-red: #de3c4bff;
+--electric-blue: #87f5fbff;
+--dark-purple-2: #2f131eff;
+--silver: #cec3c1ff;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
