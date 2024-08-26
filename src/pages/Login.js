@@ -24,14 +24,9 @@ const Login = () => {
   };
 
   return (
-    <section className='w-[100vw] h-[100vh] flex items-center justify-start gap-20 bg-slate-200'>
-      {/* <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center gap-4'> */}
-        {/* <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className='px-4 py-2 rounded-md' /> */}
-        {/* <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required className='px-4 py-2 rounded-md' /> */}
-        {/* <button type="submit">Login</button> */}
-      {/* </form> */}
-      <form onSubmit={handleSubmit} className="w-[750px] h-screen rounded-lg">
-        <div className="w-[750px] max-w-xl rounded-lg shadow-md py-6 px-16 bg-slate-50 h-screen flex flex-col justify-center relative">
+    <section className='max-w-[100vw] h-screen flex items-center justify-center xl:justify-start gap-20 bg-slate-200'>
+      <form onSubmit={handleSubmit} className="w-full xl:w-[750px] h-screen rounded-lg flex items-center justify-center xl:justify-start">
+        <div className="w-full  xl:w-[750px] max-w-xl rounded-lg shadow-md py-6 px-4 xl:px-16 bg-slate-50 h-screen flex flex-col justify-center relative">
           <FullLogo /> 
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Login</h2>
           <div className='w-[100%] h-[1px] bg-gray-300 mb-6'></div>
@@ -46,10 +41,9 @@ const Login = () => {
           </div>
         </div>
       </form>
-      <div className='border w-full flex items-center justify-center'>
+      <div className='hidden border w-full xl:flex items-center justify-center'>
         <img src="/hero.svg" width="550"></img>
       </div>
-
     </section>
   );
 };
