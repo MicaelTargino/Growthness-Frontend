@@ -27,7 +27,7 @@ const Login = () => {
     <section className='max-w-[100vw] h-screen flex items-center justify-center xl:justify-start gap-20 bg-slate-200'>
       <form onSubmit={handleSubmit} className="w-full xl:w-[750px] h-screen rounded-lg flex items-center justify-center xl:justify-start">
         <div className="w-full  xl:w-[750px] max-w-xl rounded-lg shadow-md py-6 px-4 xl:px-16 bg-slate-50 h-screen flex flex-col justify-center relative">
-          <FullLogo /> 
+          <FullLogo className="absolute top-5 left-5" /> 
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Login</h2>
           <div className='w-[100%] h-[1px] bg-gray-300 mb-6'></div>
           <div className="flex flex-col">
