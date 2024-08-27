@@ -43,8 +43,8 @@ const Register = () => {
         <header className='bg-slate-50 top-0 absolute p-2 shadow-md w-full h-auto flex items-center justify-start'>
             <FullLogo  />
         </header>
-        <form onSubmit={handleSubmit} className="w-[650px] rounded-lg flex items-center justify-center xl:justify-start">
-        <div className="w-[650px] rounded-lg shadow-md py-6 px-4 xl:px-16 bg-slate-50 flex flex-col justify-center relative">
+        <form onSubmit={handleSubmit} className="w-full max-w-[550px] lg:w-[650px] lg:max-w-full rounded-lg flex items-center justify-center xl:justify-start">
+        <div className="w-full max-w-[550px] lg:max-w-full lg:w-[650px] rounded-lg shadow-md py-6 px-4 xl:px-16 bg-slate-50 flex flex-col justify-center relative">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Registrar</h2>
           <div className='w-[100%] h-[1px] bg-gray-300 mb-6'></div>
           <div className="flex flex-col">
