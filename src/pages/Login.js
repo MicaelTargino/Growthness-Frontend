@@ -16,12 +16,18 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.email.length === 0 || formData.password.length === 0) {
+      notify('error', 'Preencha todos os campos.', 'bottom-right');
+      return;
+    }
+
     try {
       await loginUser(formData);  
       navigate('/home')    
 
     } catch (error) {
-      
+
       notify('error', error.response.data.message, 'bottom-right');
     }
   };
