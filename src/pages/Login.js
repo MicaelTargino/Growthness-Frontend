@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/authService';
 import { HeartHandshake } from 'lucide-react';
 import FullLogo from '../components/FullLogo';
+import { notify } from '../services/toastService';
+import { ToastContainer } from 'react-toastify';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -15,11 +17,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await loginUser(formData);
-      alert('Login successful!');
-      navigate('/home'); // Redirect to home page after successful login
+      await loginUser(formData);  
+      navigate('/home')    
+
     } catch (error) {
-      alert('Login failed!');
+      
+      notify('error', error.response.data.message, 'bottom-right');
     }
   };
 
@@ -44,6 +47,7 @@ const Login = () => {
       <div className='hidden border w-full xl:flex items-center justify-center'>
         <img src="/hero.svg" width="550"></img>
       </div>
+     <ToastContainer />
     </section>
   );
 };
