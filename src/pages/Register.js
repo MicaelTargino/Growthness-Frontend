@@ -4,6 +4,7 @@ import FullLogo from '../components/FullLogo';
 import { useNavigate } from 'react-router-dom';
 import { notify } from '../services/toastService';
 import { ToastContainer } from 'react-toastify';
+import NavHeader from '../components/NavHeader';
 
 
 const Register = () => {
@@ -39,17 +40,8 @@ const Register = () => {
   }
 
   return (
-    // <form onSubmit={handleSubmit}>
-    //   <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} required />
-    //   <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-    //   <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-    //   <input type="password2" name="password" placeholder="Confirm Password" value={formData.password2} onChange={handleChange} required />
-    //   <button type="submit">Register</button>
-    // </form>
     <section className='w-[100vw] h-screen bg-slate-200 relative flex items-center justify-center'>
-        <header className='bg-slate-50 top-0 absolute p-2 shadow-md w-full h-auto flex items-center justify-start'>
-            <FullLogo  />
-        </header>
+        <NavHeader />
         <form onSubmit={handleSubmit} className="w-full max-w-[550px] lg:w-[650px] lg:max-w-full rounded-lg flex items-center justify-center xl:justify-start">
         <div className="w-full max-w-[550px] lg:max-w-full lg:w-[650px] rounded-lg shadow-md py-6 px-4 xl:px-16 bg-slate-50 flex flex-col justify-center relative">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Registrar</h2>

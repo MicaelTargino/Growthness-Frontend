@@ -24,4 +24,5 @@ export const loginUser = async (userData) => {
 export const logoutUser = () => {
   localStorage.removeItem('growthness_access_token');
   localStorage.removeItem('growthness_refresh_token');
+  axiosInstance.defaults.headers['Authorization'] = '';
 };

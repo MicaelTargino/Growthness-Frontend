@@ -27,10 +27,21 @@ const Login = () => {
       navigate('/home')    
 
     } catch (error) {
-
-      notify('error', error.response.data.message, 'bottom-right');
+      try {
+        notify('error', error.response.data.message, 'bottom-right');
+      } catch (error) {
+        console.log("Error accessing API response")
+      }
     }
   };
+
+  const goToRegister = () => {
+    navigate('/register');
+  }
+
+  const goToResetPasswordRequest = () => {
+    navigate('/password-reset-request');
+  }
 
   return (
     <section className='max-w-[100vw] h-screen flex items-center justify-center xl:justify-start gap-20 bg-slate-200'>
@@ -43,8 +54,8 @@ const Login = () => {
             <input type="email" name="email" value={formData.email} onChange={handleChange} className="bg-gray-100 border text-gray-900 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" placeholder="Email" />
             <input type="password" name="password" value={formData.password} onChange={handleChange} className="bg-gray-100 border text-gray-900 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" placeholder="Senha" />
             <div className="flex flex-col">
-              <a href="#" className="text-sm text-blue-500 hover:underline mb-0.5">Esqueceu sua senha?</a>
-              <p className="text-gray-900 mt-4"> Não tem uma conta ainda? <a href="#" className="text-sm text-blue-500 -200 hover:underline mt-4">Registre-se</a></p>
+              <a onClick={goToResetPasswordRequest} className="cursor-pointer text-sm text-blue-500 hover:underline mb-0.5">Esqueceu sua senha?</a>
+              <p className="text-gray-900 mt-4"> Não tem uma conta ainda? <a onClick={goToRegister} className="text-sm text-blue-500 -200 hover:underline mt-4 cursor-pointer">Registre-se</a></p>
             </div>
             <button type="submit" className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">Login</button>
           </div>
