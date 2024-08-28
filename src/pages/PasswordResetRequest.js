@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { notify } from '../services/toastService';
 import { ToastContainer } from 'react-toastify';
 import NavHeader from '../components/NavHeader';
-import BtnWithLoading from '../components/BtnWithLoading';
 
 
 const PasswordResetRequest = () => {
@@ -43,22 +42,6 @@ const PasswordResetRequest = () => {
   };
 
   return (
-    // <div>
-    //   <h1>Request Password Reset</h1>
-    //   <form onSubmit={handleSubmit}>
-    //     <input
-    //       type="email"
-    //       name="email"
-    //       placeholder="Enter your email"
-    //       value={email}
-    //       onChange={handleChange}
-    //       required
-    //     />
-    //     <button type="submit">Submit</button>
-    //   </form>
-    //   {message && <p style={{ color: 'green' }}>{message}</p>}
-    //   {error && <p style={{ color: 'red' }}>{error}</p>}
-    // </div>
     <section className='w-[100vw] h-screen bg-slate-200 relative flex items-center justify-center'>
         <NavHeader />
         <form onSubmit={handleSubmit} className="w-full max-w-[550px] lg:w-[650px] lg:max-w-full rounded-lg flex items-center justify-center xl:justify-start">
