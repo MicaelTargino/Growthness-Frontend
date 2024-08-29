@@ -1,5 +1,9 @@
 import axiosInstance from '../utils/axiosInstance';
 
+export const IsAuthenticated = () => {
+  return localStorage.getItem('growthness_access_token');
+}
+
 // Register User
 export const registerUser = async (userData) => {
     const response = await axiosInstance.post('register/', userData);
