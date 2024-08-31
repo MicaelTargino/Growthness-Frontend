@@ -52,11 +52,11 @@ const NavProfileDropdown = () => {
         <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuItem className="cursor-pointer transition-all hover:bg-slate-50">
             <User className="mr-2 h-4 w-4" />
             <span>Perfil</span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuItem className="cursor-pointer transition-all hover:bg-slate-50">
             <Bell className="mr-2 h-4 w-4" />
             <span>Notificações</span>
           </DropdownMenuItem>
