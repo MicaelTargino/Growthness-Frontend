@@ -13,6 +13,9 @@ module.exports = {
       },
     },
     extend: {
+      boxShadow: {
+        'bottom-only': '0 4px 6px -1px rgba(0, 0, 0, 0.1)', // Customize the values as needed
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

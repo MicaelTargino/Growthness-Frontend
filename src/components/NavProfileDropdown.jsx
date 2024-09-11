@@ -62,9 +62,9 @@ const NavProfileDropdown = () => {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer text-red-700 hover:text-red-700">
+        <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-700 hover:text-red-700">
           <LogOut className="mr-2 h-4 w-4" />
-          <span onClick={handleLogout}>Log out</span>
+          <span>Log out</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
