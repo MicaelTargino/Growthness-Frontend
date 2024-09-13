@@ -12,16 +12,6 @@ const ProfilePage = () => {
                     <p className="text-gray-900 mb-6">Esses dados serão usados para medir sua evolução.</p>
                     <div className="px-4 py-5 bg-white flex justify-between rounded-md shadow-[0px_0px_15px_rgba(0,0,0,0.09)]">
                         <div className="flex flex-col gap-2">
-                            {/* <h2 className="text-lg font-semibold text-gray-900 mb-2">Defina seu objetivo: </h2> */}
-                            {/* <p className="text-md">Objetivo: </p> */}
-                            {/* <input type="number" name="height" className="bg-gray-100 border text-gray-900 rounded-md p-2 mb-4 focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" placeholder="Insira sua altura" /> */}
-                            {/* <select name="goals" className="bg-gray-100 border cursor-pointer text-gray-900 rounded-lg p-2 mb-4 ">
-                                <option value="m">Emagrecimento</option>
-                                <option value="cm">Hipertrofia</option>
-                                <option value="feet">Envelhecimento saudável</option>
-                                <option value="feet">Manutençao da saúde</option>
-                                <option value="feet">Prevenção de doença(s)</option>
-                            </select> */}
                             <div
                             class="w-[300px]"
                             >
@@ -93,7 +83,6 @@ const ProfilePage = () => {
                             </div>
 
                         </div>
-                    {/* <div className='w-[100%] h-[1px] bg-gray-300 my-4'></div> */}
                         <div class="w-[300px]">
                         <h2 className="text-lg font-semibold text-gray-900 mb-2">Insira seus dados atuais: </h2>
                         <div className="flex items-center gap-2">

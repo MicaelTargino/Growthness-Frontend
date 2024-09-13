@@ -28,7 +28,6 @@ const Home = () => {
         <MainLayout sectionActive="Dashboard">
             {UserProfileCompletionInfo?.profile_complete == false && (
                 <div onClick={goToProfilePage} className='hover:scale-105 hover:shadow-lg transition cursor-pointer flex flex-col max-w-72 h-52 p-4 border-2 rounded-xl shadow-md'>
-                    {/* <CircleAlertIcon size={48} className='text-red-600' /> */}
                     <h4 className='text-slate-800 font-bold text-xl mb-4 flex items-center gap-4'>
                         Complete seu perfil <SquareArrowOutUpRight className="text-[#417ff6] cursor-pointer hover:scale-105" />
                     </h4>
@@ -42,8 +41,6 @@ const Home = () => {
                         {UserProfileCompletionInfo.fields.map(item => (
                             <CompleteProfileStep completed={item.completed} description={item.description} className="border-b pb-1 px-1" />
                         ))}
-                        {/* <CompleteProfileStep completed={!UserProfileCompletionInfo.missing_fields.includes('height')} description="Adcione sua altura" className="border-b py-1 px-1" /> */}
-                        {/* <CompleteProfileStep completed={!UserProfileCompletionInfo.missing_fields.includes('goals')} description="Adcione seu(s) objetivos" className='py-1 px-1' /> */}
                     </ul>
                 </div>
             )}
