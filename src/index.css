@@ -61,3 +61,13 @@ code {
     transform: scaleY(1);
   }
 }
+
+.skill-level {
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-percent {
+  height: 100%;
+}
