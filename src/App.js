@@ -8,6 +8,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Logout from './pages/Logout';
 import PasswordResetRequest from './pages/PasswordResetRequest';
 import PasswordResetConfirm from './pages/PasswordResetConfirm';
+import ProfilePage from './pages/ProfilePage';
+
 const App = () => {
     return (
         <Router>
@@ -19,6 +21,7 @@ const App = () => {
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/password-reset-request" element={<PasswordResetRequest />} />
                 <Route path="/reset-password/:uid/:token" element={<PasswordResetConfirm />} />
+                <Route path="/profile" element={<ProfilePage />} />
             </Routes>
         </Router>
     );
