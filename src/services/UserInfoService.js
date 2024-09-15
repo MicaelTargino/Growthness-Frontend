@@ -9,3 +9,14 @@ export const fetchUserStatus = async () => {
       throw error;
     }
   };
+
+export const fetchUserData = async () => {
+    try {
+      // empty patch request will only return the current user data
+      const response = await axiosInstance.patch('/user/complete-profile/');
+      return response.data;
+    } catch(error) {
+      console.log('Error getting user data: ', error);
+      throw error;
+    }
+}

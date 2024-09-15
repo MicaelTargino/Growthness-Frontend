@@ -17,7 +17,7 @@ const SideBar = ({SectionActive=""}) => {
     
 
     return (
-    <div className="card md:w-auto bg-slate-50 p-2 md:p-5 shadow-lg pt-20 shadow-slate-300 rounded-md">
+    <div className="card md:w-auto bg-slate-50 p-2 md:p-5 shadow-lg pt-20 md:pt-20 shadow-slate-300 rounded-md">
       <ul className="w-full flex flex-col gap-2">
         <SideBarItem
           Icon={LayoutDashboard}
