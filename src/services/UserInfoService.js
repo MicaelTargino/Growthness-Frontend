@@ -19,4 +19,16 @@ export const fetchUserData = async () => {
       console.log('Error getting user data: ', error);
       throw error;
     }
+  }
+  
+  export const updateUserData = async (userData) => {    
+      try {
+        // empty patch request will only return the current user data
+        const response = await axiosInstance.patch('/user/complete-profile/', userData);
+        return 
+        // return response.data;
+      } catch(error) {
+        console.log('Error updating user data: ', error);
+        throw error;
+      }
 }
