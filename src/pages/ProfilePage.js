@@ -4,6 +4,8 @@ import { fetchUserData, updateUserData } from "../services/UserInfoService"; // 
 import GoalComponent from "../components/GoalOption";
 import { notify } from '../services/toastService';
 import { ToastContainer } from 'react-toastify';
+import { DatePickerDemo } from "../components/DatePicker";
+import { parseISO } from "date-fns";
 
 const ProfilePage = () => {
     const [userData, setUserData] = useState({
@@ -11,12 +13,18 @@ const ProfilePage = () => {
         height: '',
         weight_measure: 'kg',
         height_measure: 'm',
-        goals: []
+        goals: [],
+        birth_date: null,  // Add a field for the birth date
     });
 
     useEffect(() => {
         const func = async () => {
             const data = await fetchUserData();
+            if (data.birth_date) {
+                // Convert the date to a JavaScript Date object with date-fns
+                data.birth_date = parseISO(data.birth_date);
+            }
+            console.log(data)
             setUserData(data);
         };
         func();
@@ -39,15 +47,23 @@ const ProfilePage = () => {
         });
     };
 
+    // Function to handle date change from DatePicker
+    const handleDateChange = (selectedDate) => {
+        setUserData({
+            ...userData,
+            birthDate: selectedDate  // Update the birthDate field in userData
+        });
+    };
+
     const handleSubmit = async (e) => {
         try {
+            console.log(userData)
             e.preventDefault();  // Prevent default form submission behavior
             const res = await updateUserData(userData);  // Send updated data to the backend
-            notify('success', 'Perfil atualizado com sucesso.', 'bottom-right')
-        } catch(err) {
-            notify('error', 'Erro ao atualizar perfil.', 'bottom-right')
+            notify('success', 'Perfil atualizado com sucesso.', 'bottom-right');
+        } catch (err) {
+            notify('error', 'Erro ao atualizar perfil.', 'bottom-right');
         }
-        
     };
 
     return (
@@ -89,8 +105,14 @@ const ProfilePage = () => {
                             </div>
 
                             {/* User's current weight and height */}
-                            <div>
+                            <div className="flex flex-col">
                                 <h2 className="text-lg font-semibold text-gray-900 mb-2">Insira seus dados atuais: </h2>
+                                
+                                <div className="mb-4">
+                                    {/* Pass the handleDateChange function to DatePicker */}
+                                    <DatePickerDemo selectedDate={userData.birth_date} onDateChange={handleDateChange} />
+                                </div>
+                                
                                 <div className="flex items-center gap-2">
                                     <input
                                         type="number"
@@ -131,6 +153,7 @@ const ProfilePage = () => {
                                         <option value="feet">ft</option>
                                     </select>
                                 </div>
+                            </div>
 
                                 <button
                                     type="submit"
@@ -138,7 +161,6 @@ const ProfilePage = () => {
                                 >
                                     Salvar
                                 </button>
-                            </div>
                         </div>
                     </div>
                 </form>

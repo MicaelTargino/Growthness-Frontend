@@ -27,7 +27,7 @@ const Home = () => {
     return (
         <MainLayout sectionActive="Dashboard">
             {UserProfileCompletionInfo?.profile_complete == false && (
-                <div onClick={goToProfilePage} className='hover:scale-105 hover:shadow-lg transition cursor-pointer flex flex-col max-w-72 h-52 p-4 border-2 rounded-xl shadow-md'>
+                <div onClick={goToProfilePage} className='hover:scale-105 hover:shadow-lg transition cursor-pointer flex flex-col max-w-72 h-60 p-4 border-2 rounded-xl shadow-md'>
                     <h4 className='text-slate-800 font-bold text-xl mb-4 flex items-center gap-4'>
                         Complete seu perfil <SquareArrowOutUpRight className="text-[#417ff6] cursor-pointer hover:scale-105" />
                     </h4>
