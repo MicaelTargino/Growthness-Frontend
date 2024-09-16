@@ -51,13 +51,12 @@ const ProfilePage = () => {
     const handleDateChange = (selectedDate) => {
         setUserData({
             ...userData,
-            birthDate: selectedDate  // Update the birthDate field in userData
+            birth_date: selectedDate  // Update the birthDate field in userData
         });
     };
 
     const handleSubmit = async (e) => {
         try {
-            console.log(userData)
             e.preventDefault();  // Prevent default form submission behavior
             const res = await updateUserData(userData);  // Send updated data to the backend
             notify('success', 'Perfil atualizado com sucesso.', 'bottom-right');

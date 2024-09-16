@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import axiosInstance from '../utils/axiosInstance';
 
 export const fetchUserStatus = async () => {
@@ -24,6 +25,7 @@ export const fetchUserData = async () => {
   export const updateUserData = async (userData) => {    
       try {
         // empty patch request will only return the current user data
+        userData.birth_date = format(userData?.birth_date, "yyyy-MM-dd")
         const response = await axiosInstance.patch('/user/complete-profile/', userData);
         return 
         // return response.data;
