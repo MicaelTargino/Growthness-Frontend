@@ -23,14 +23,27 @@ export const fetchUserData = async () => {
   }
   
   export const updateUserData = async (userData) => {    
-      try {
-        // empty patch request will only return the current user data
-        userData.birth_date = format(userData?.birth_date, "yyyy-MM-dd")
-        const response = await axiosInstance.patch('/user/complete-profile/', userData);
-        return 
-        // return response.data;
-      } catch(error) {
-        console.log('Error updating user data: ', error);
-        throw error;
+    try {
+      // Empty object to hold non-null values
+      const cleanedData = {};
+  
+      // Format birth_date and add it to cleanedData if it exists
+      if (userData.birth_date) {
+        cleanedData['birth_date'] = format(userData?.birth_date, "yyyy-MM-dd");
       }
-}
+  
+      // Add non-null fields to cleanedData
+      cleanedData['weight'] = userData.weight !== "" ? userData.weight : null;
+      cleanedData['height'] = userData.height !== "" ? userData.height : null;
+      cleanedData['goal'] = userData.goal !== "" ? userData.goal : null;
+  
+      // Make patch request with cleanedData instead of userData
+      const response = await axiosInstance.patch('/user/complete-profile/', cleanedData);
+      
+      return response.data;  // Assuming you want to return the response data
+    } catch (error) {
+      console.log('Error updating user data: ', error);
+      throw error;
+    }
+  };
+  
