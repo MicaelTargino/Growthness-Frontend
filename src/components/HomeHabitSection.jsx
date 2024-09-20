@@ -1,6 +1,8 @@
 import { PlusSquareIcon, SquareArrowOutUpRight } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import CreateHabitDialog from "./CreateHabitDialog";
+import { useState } from "react";
+import { fetchHabitsStatus } from "../services/HabitsService";
 
 const HomeHabitSection = ({name, habits, type}) => {
     const navigate = useNavigate();
