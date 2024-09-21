@@ -3,11 +3,22 @@
 @tailwind utilities;
 
 * {
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
 --dark-purple: #240115ff;
 --rusty-red: #de3c4bff;
 --electric-blue: #87f5fbff;
 --dark-purple-2: #2f131eff;
 --silver: #cec3c1ff;
+}
+
+div#root, body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {

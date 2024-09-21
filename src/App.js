@@ -11,6 +11,7 @@ import PasswordResetConfirm from './pages/PasswordResetConfirm';
 import ProfilePage from './pages/ProfilePage';
 import HabitPage from './pages/Habit';
 
+
 const App = () => {
     return (
         <Router>
