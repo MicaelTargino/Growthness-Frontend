@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PlusSquareIcon } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,28 +9,28 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../components/ui/dialog";
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
-import { createHabit } from "../services/HabitsService";
+} from "./ui/dialog";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { createHabit, createHabitLog } from "../services/HabitsService";
 import { useNavigate } from "react-router-dom";
+import { DatePickerDemo } from "./DatePicker";
 
-export default function CreateHabitDialog({ type }) {
+export default function CreateHabitLogDialog({ measure, type, habitId }) {
   const navigate = useNavigate();
 
-  // State for form data
+  // State for form data, including goal and dateRefered
   const [formData, setFormData] = useState({
-    name: "",
     goal: "",
-    measure: "",
-    frequencia: type === "daily" ? "1" : type === "weekly" ? "2" : "3",
+    measure: measure,
+    dateRefered: new Date().toISOString(),  // New field to store the selected date
+    frequencia: type === "daily" ? "1" : type === "weekly" ? "2" : "3",  // Frequency based on type
   });
 
   // State for validation errors
   const [errors, setErrors] = useState({
-    name: false,
     goal: false,
-    measure: false,
+    dateRefered: false,
   });
 
   // State for submission error messages
@@ -39,7 +39,7 @@ export default function CreateHabitDialog({ type }) {
   // State to manage dialog open/close
   const [open, setOpen] = useState(false);
 
-  // Function to update form data
+  // Function to update form data for non-date fields
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -47,15 +47,22 @@ export default function CreateHabitDialog({ type }) {
     });
   };
 
+  // Function to update the selected date
+  const handleDateChange = (date) => {
+    setFormData({
+      ...formData,
+      dateRefered: date,
+    });
+  };
+
   // Function to validate form
   const validateForm = () => {
     const newErrors = {
-      name: formData.name.trim() === "",
-      goal: formData.goal.trim() === "",
-      measure: formData.measure.trim() === "",
+      goal: formData.goal.trim() === "",  // Validate goal is not empty
+      dateRefered: formData.dateRefered === null || formData.dateRefered.trim() === "",  // Validate date is selected
     };
     setErrors(newErrors);
-    return !Object.values(newErrors).some(Boolean);
+    return !Object.values(newErrors).some(Boolean);  // Return true if no errors
   };
 
   // Function to handle form submission
@@ -66,15 +73,15 @@ export default function CreateHabitDialog({ type }) {
       return; // Don't submit if validation fails
     }
 
+
     try {
-      formData['frequencies'] = [parseInt(formData.frequencia)];
-      const res = await createHabit(formData);
+      const res = await createHabitLog(formData, habitId);  // Submit form data to API
       setSubmitError(null); // Clear any previous error
       setOpen(false); // Close the modal
-      navigate(`/habit/${res.id}`)
+      window.location.reload() // this is a temporaly solution, while I dont setup Redux;
     } catch (error) {
-      console.error("Error creating habit:", error);
-      setSubmitError("Erro ao criar hábito. Por favor, tente novamente."); // Show error in modal
+      console.error("Error creating habit log:", error);
+      setSubmitError("Erro ao registrar realização. Por favor, tente novamente."); // Show error in modal
     }
   };
 
@@ -86,32 +93,15 @@ export default function CreateHabitDialog({ type }) {
           className="text-[#417ff6] cursor-pointer hover:scale-105"
         />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-white rounded-xl ">
+      <DialogContent className="sm:max-w-[425px] bg-white rounded-xl">
         <DialogHeader>
-          <DialogTitle>Criar Hábito</DialogTitle>
+          <DialogTitle>Registrar realização</DialogTitle>
           <DialogDescription>
-            Preencha os dados do seu novo hábito.
+            Preencha se você já realizou seu hábito.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-4 py-4">
-            <div className="flex flex-col items-start gap-1">
-              <Label htmlFor="name" className="text-right">
-                Nome<span className="text-red-600">*</span>
-              </Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Beber Água"
-                className={`col-span-3 focus:border-blue-700 ${
-                  errors.name ? "border-red-500" : ""
-                }`}
-              />
-              {errors.name && (
-                <span className="text-red-500">Nome é obrigatório</span>
-              )}
-            </div>
             <div className="flex gap-2">
               <div className="flex flex-col items-start gap-1">
                 <Label htmlFor="goal" className="text-right">
@@ -133,37 +123,33 @@ export default function CreateHabitDialog({ type }) {
               </div>
               <div className="flex flex-col items-start gap-1">
                 <Label htmlFor="measure" className="text-right">
-                  Medida<span className="text-red-600">*</span>
+                  Medida
                 </Label>
                 <Input
                   id="measure"
-                  value={formData.measure}
+                  value={measure}
                   onChange={handleChange}
-                  placeholder="litros"
+                  disabled
                   className={`col-span-3 focus:border-blue-700 ${
                     errors.measure ? "border-red-500" : ""
                   }`}
                 />
-                {errors.measure && (
-                  <span className="text-red-500">Medida é obrigatória</span>
-                )}
               </div>
             </div>
-            {/* <div className="flex flex-col items-start gap-1">
-              <Label htmlFor="frequencia" className="text-right">
-                Frequência<span className="text-red-600">*</span>
+            <div className="flex flex-col items-start gap-1">
+              <Label htmlFor="dateRefered" className="text-right">
+                Data<span className="text-red-600">*</span>
               </Label>
-              <select
-                id="frequencia"
-                value={formData.frequencia}
-                onChange={handleChange}
-                className="col-span-3 border w-full rounded px-3 py-2"
-              >
-                <option value="1">Diária</option>
-                <option value="2">Semanal</option>
-                <option value="3">Mensal</option>
-              </select>
-            </div> */}
+              <DatePickerDemo
+                description="Data"
+                placeholder="Selecione a data"
+                selectedDate={formData.dateRefered}
+                onDateChange={handleDateChange}
+              />
+              {errors.dateRefered && (
+                <span className="text-red-500">Data é obrigatória</span>
+              )}
+            </div>
           </div>
 
           {/* Error message display */}

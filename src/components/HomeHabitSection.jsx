@@ -23,13 +23,14 @@ const HomeHabitSection = ({name, habits, type}) => {
                     if (habit.frequency == type) return (
                         <li onClick={() => goToHabitPage(habit.id)} className="cursor-pointer hover:bg-slate-300 transition-all p-2 rounded-xl" key={`${habit.habit} - ${habit.percentage_completion}`}>
                             <p className="flex gap-2 items-center">
-                                {habit.habit} <SquareArrowOutUpRight size={24} className="text-[#417ff6] cursor-pointer hover:scale-105" />
+                                {habit.habit} 
+                                <SquareArrowOutUpRight size={24} className="text-[#417ff6] cursor-pointer hover:scale-105" />
                             </p>
                             <div className='w-[90%] max-w-[300px] flex items-center gap-3'>
                                 <div class="skill-level w-full h-4 rounded-full">
-                                    <div class="skill-percent bg-[#417ff6]" style={{width: `${habit.percentage_completion}%`}}></div>
+                                    <div class="skill-percent bg-[#417ff6]" style={{width: `${Math.min(habit.percentage_completion, 100)}%`}}></div>
                                 </div>
-                                <div class="skill-percent-number">{habit.percentage_completion}%</div>
+                                <div class="skill-percent-number">{Math.min(habit.percentage_completion, 100)}%</div>
                             </div>
                         </li>
                     )

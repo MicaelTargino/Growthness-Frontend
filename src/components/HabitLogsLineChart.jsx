@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';  // Import the annotation plugin
+import { getHabitLogsGraphData } from '../services/HabitsService';
 
 // Register the required chart components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, annotationPlugin);  // Register the annotation plugin
 
-const HabitLogsLineChart = ({ title, label, measure, dateStep = "1", startDateRange = "7", goalValue = 10}) => {
+const HabitLogsLineChart = ({ habitId, frequency, title, label, measure, dateStep = "1", startDateRange = "7", defaultGoalValue = 10}) => {
+  const [habitData, setHabitData] = useState([])
   // Helper function to generate the last 'n' dates in 'dd/mm' format
   const getLastNDates = (n, step) => {
     const dates = [];
@@ -24,10 +26,29 @@ const HabitLogsLineChart = ({ title, label, measure, dateStep = "1", startDateRa
   // Generate the labels for the last 'startDateRange' days
   const labels = getLastNDates(parseInt(startDateRange), parseInt(dateStep));
 
-  let habitData = [15, 2, 15, 30, 20, 10, 40];
+  useEffect(() => {
+    const getData = async () => {
+    let habitDataFromAPI = await getHabitLogsGraphData(habitId, dateStep, startDateRange);
+      console.log(habitDataFromAPI)
+      setHabitData(habitDataFromAPI)
+    }
+
+    getData()
+
+  }, [startDateRange])
+
+
+  const mapping = {
+    "daily": 1,
+    "weekly": 7,
+    "monthly": 30
+  }
+  const frequencyDivider = mapping[frequency]
+  const goalValue = defaultGoalValue / frequencyDivider;
 
   // Ensure habitData is the correct length, matching the labels array
   const habitDataLength = labels.length;
+  console.log(habitDataLength)
   const dataPoints = habitData.slice(-habitDataLength); // Get the most recent data points
 
   // If not enough data, fill with placeholders (optional)

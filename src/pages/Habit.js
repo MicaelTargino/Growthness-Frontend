@@ -1,11 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import { Button } from "../components/ui/button";
-import { CircleChevronLeft } from "lucide-react";
+import { CircleChevronLeft, DeleteIcon, Trash, TrashIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { getHabitCompletionData, getHabitData, getHabitLogsData } from "../services/HabitsService";
+import { deleteHabi, deleteHabit, getHabitCompletionData, getHabitData, getHabitLogsData } from "../services/HabitsService";
 import FrequencyBadge from "../components/FrequencyBadge";
 import HabitLogsLineChart from "../components/HabitLogsLineChart";
+import CreateHabitDialog from "../components/CreateHabitDialog";
+import CreateHabitLogDialog from "../components/CreateHabitLogDialog";
 
 const HabitPage = () => {
     const navigate = useNavigate();
@@ -58,11 +60,13 @@ const HabitPage = () => {
                         <CircleChevronLeft className="text-blue-500" />
                     </button>
                     <h2 className="text-slate-800 font-bold text-3xl mb-0.5 flex items-center gap-4">
-                        <span>{habit.name}</span>
+                        <span>{habit.name} {habit.goal} {habit.measure}</span>
                         <FrequencyBadge type={habitCompletion.frequency} />
                         <span className="font-boldest text-sm px-3 py-1 rounded-2xl bg-blue-300 shadow-lg uppercase text-blue-800">
-                            {habitCompletion.percentage_completion}% 
+                            {Math.min(habitCompletion.percentage_completion, 100)}% 
                         </span>
+                        <CreateHabitLogDialog measure={habit.measure} habitId={habitId} />
+                        <Trash className="text-red-600 hover:scale-105 transition-all cursor-pointer" onClick={async () => {await deleteHabit(habitId); navigate("/home")}} />
                     </h2>
                 </div>
                 <div className="relative w-[80%] mt-6 flex flex-col items-center justify-center">
@@ -74,16 +78,17 @@ const HabitPage = () => {
                         <option value="7">Últimos 7 dias</option>
                         <option value="14">Últimos 14 dias</option>
                         <option value="30">Último mês</option>
-                        <option value="6months">Últimos 6 meses</option>
-                        <option value="1year">Último ano</option>
                     </select>
 
                     {/* Pass the chartDateStep and chartStartDate to the chart component */}
                     <HabitLogsLineChart
+                        habitId={habitId}
+                        frequency={habitCompletion.frequency}
                         title={`histórico de ${habit.name}`}
                         measure={habit.measure}
                         dateStep={chartDateStep}
                         startDateRange={chartStartDate}
+                        defaultGoalValue={habitCompletion.goal}
                         label={`Quantidade (em ${habit.measure}) `}
                     />
                 </div>

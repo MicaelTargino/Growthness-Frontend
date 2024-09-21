@@ -36,6 +36,7 @@ axiosInstance.interceptors.response.use(
         try {
           const refreshToken = localStorage.getItem('growthness_refresh_token');
           const response = await axiosInstance.post('auth/token/refresh/', { refresh: refreshToken });
+          if(response.status === 401) { throw new Error('Token refresh failed') }
           const { access } = response.data;
   
           // Store the new token

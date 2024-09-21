@@ -41,8 +41,8 @@ const Home = () => {
                     <CompleteProfileSection handleClick={goToProfilePage} UserProfileCompletionInfo={UserProfileCompletionInfo} />
                 )}
                 <HomeHabitSection type="daily" name="Hábitos Diários" habits={dailyHabits} />
-                <HomeHabitSection type="weekly" name="Hábitos Semanais" habits={dailyHabits} />
-                <HomeHabitSection type="monthly" name="Hábitos Mensais" habits={dailyHabits} />
+                {/* <HomeHabitSection type="weekly" name="Hábitos Semanais" habits={dailyHabits} /> */}
+                {/* <HomeHabitSection type="monthly" name="Hábitos Mensais" habits={dailyHabits} /> */}
             </main>
         </MainLayout>
     );

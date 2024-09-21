@@ -107,7 +107,7 @@ const ProfilePage = () => {
                                     <h2 className="text-xl font-semibold mb-3 select-none">Insira seus dados atuais: </h2>
                                     
                                     <div className="mb-4">
-                                        <DatePickerDemo selectedDate={userData.birth_date} onDateChange={handleDateChange} />
+                                        <DatePickerDemo description="Nascimento" placeholder="Selecione sua data de nascimento" selectedDate={userData.birth_date} onDateChange={handleDateChange} />
                                     </div>
 
                                     <div className="flex items-center gap-2">

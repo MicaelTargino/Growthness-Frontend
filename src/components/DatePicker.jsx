@@ -13,7 +13,7 @@ import {
   PopoverTrigger,
 } from "../components/ui/popover"
 
-export function DatePickerDemo({ selectedDate, onDateChange }) {
+export function DatePickerDemo({ placeholder, description,selectedDate, onDateChange }) {
   const [date, setDate] = React.useState();
 
   return (
@@ -28,7 +28,7 @@ export function DatePickerDemo({ selectedDate, onDateChange }) {
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
           {/* {date ? format(date, "dd/MM/yyyy") : <span>Data de nascimento</span>} */}
-          {selectedDate ? <p>Nascimento: {format(selectedDate, "dd/MM/yyyy")}</p> : <p>Selecione sua Data de nascimento</p>}
+          {selectedDate ? <p>{description}: {format(selectedDate, "dd/MM/yyyy")}</p> : <p>{placeholder}</p>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
