@@ -14,12 +14,15 @@ import { fetchExercises } from '../services/ExercisesService';
 import HomeExercisesSection from '../components/HomeExecisesSection';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { fetchMeals } from '../services/DietsService';
+import HomeMealsSection from '../components/HomeMealsSection';
 
 const Home = () => {
     var navigate = useNavigate();
     const [UserProfileCompletionInfo, setUserProfileCompletionInfo] = useState();
     const [dailyHabits, setDailyHabits] = useState([]);
     const [exercises, setExercises] = useState([]);
+    const [meals, setMeals] = useState([]);
     const [currentDay, setCurrentDay] = useState(format(new Date(), "EEEE"));
     const [currentDayInPTBR, setCurrentDayInPTBR] = useState(format(new Date(), "EEEE", {locale: ptBR}));
 
@@ -46,6 +49,13 @@ const Home = () => {
             setExercises(data);
         }
         getExercisesData()
+
+        const getDietsData = async () => {
+            const data = await fetchMeals ();
+            console.log(data) // this prints the correct data
+            setMeals(data);
+        }
+        getDietsData()
     }, [])
 
     return (
@@ -56,6 +66,7 @@ const Home = () => {
                 )} */}
                 <HomeHabitSection type="daily" name="Hábitos Diários" habits={dailyHabits} />
                 <HomeExercisesSection name={`Exercícios de hoje`} exercises={exercises} />
+                <HomeMealsSection name={`Refeições de hoje`} meals={meals} />
                 {/* <HomeHabitSection type="weekly" name="Hábitos Semanais" habits={dailyHabits} /> */}
                 {/* <HomeHabitSection type="monthly" name="Hábitos Mensais" habits={dailyHabits} /> */}
             </main>
