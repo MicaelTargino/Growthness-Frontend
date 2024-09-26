@@ -27,8 +27,8 @@ const Register = () => {
     try {
       await registerUser(formData);
 
-      await loginUser(formData);  
-      navigate('/home')    
+      navigate('/login ')    
+      // await loginUser(formData);  
 
     } catch (error) {
       notify('error', error.response.data.message, 'bottom-right');

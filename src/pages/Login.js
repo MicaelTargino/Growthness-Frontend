@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       await loginUser(formData);  
-      navigate('/home')    
+      navigate('/demo')    
 
     } catch (error) {
       try {
