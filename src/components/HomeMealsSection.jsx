@@ -33,7 +33,7 @@ const HomeMealsSection = ({ name, meals }) => {
                             key={meal.id}
                         >
                             <p className="flex gap-2 items-center">
-                                {meal.name} - 
+                                {meal.name} 
                                 <SquareArrowOutUpRight size={24} className="text-[#417ff6] cursor-pointer hover:scale-105" />
                             </p>
                         </li>

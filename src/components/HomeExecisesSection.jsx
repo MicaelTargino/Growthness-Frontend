@@ -30,7 +30,7 @@ const HomeExercisesSection = ({ name, exercises }) => {
                             key={exercise.id}
                         >
                             <p className="flex gap-2 items-center">
-                                {exercise.exercise_name} - {exercise.exercise_type}
+                                {exercise.exercise_name}
                                 <SquareArrowOutUpRight size={24} className="text-[#417ff6] cursor-pointer hover:scale-105" />
                             </p>
                         </li>

@@ -11,6 +11,8 @@ import PasswordResetConfirm from './pages/PasswordResetConfirm';
 import ProfilePage from './pages/ProfilePage';
 import HabitPage from './pages/Habit';
 import DemoEntrypoint from './pages/DemoEntrypoint';
+import ExercisePage from './pages/ExercisePage';
+import MealPage from './pages/MealPage';
 
 
 const App = () => {
@@ -34,6 +36,13 @@ const App = () => {
 
                 {/* habits routes */}
                 <Route path="/habit/:habitId" element={<HabitPage />} />
+                
+                {/* exercises routes */}
+                <Route path="/exercise/:exerciseId" element={<ExercisePage />} />
+
+                {/* meals routes */}
+                <Route path="/meal/:mealId" element={<MealPage />} />
+
             </Routes>
         </Router>
     );
