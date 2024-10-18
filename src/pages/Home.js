@@ -16,6 +16,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { fetchMeals } from '../services/DietsService';
 import HomeMealsSection from '../components/HomeMealsSection';
+import { userDataIsEmpty } from '../services/authService';
 
 const Home = () => {
     var navigate = useNavigate();
@@ -31,6 +32,9 @@ const Home = () => {
     }
 
     useEffect(() => {
+        const user_is_empty = userDataIsEmpty();
+        if (user_is_empty) navigate('/demo');
+
         const getProfileCompletionData =  async () => {
             const userData = await fetchUserStatus();
             setUserProfileCompletionInfo(userData);

@@ -19,12 +19,12 @@ const Marketing = () => {
                 <p className='max-w-[460px] pl-3 text-center md:text-left'>
                     Receba exercícios, dietas e metas personalizadas com inteligência artificial e acompanhe seu progresso em gráficos detalhados.   
                 </p>
-                <button onClick={() => navigate("/register")} className="hidden md:block w-auto bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">
+                <button onClick={() => navigate("/login")} className="hidden md:block w-auto bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">
                     Experimente o Growthness
                 </button>
             </div>
             <img src="/hero.svg" className="w-[250px] sm:w-[350px] md:w-[550px]"></img>
-            <button onClick={() => navigate("/register")} className="block md:hidden w-[90%] bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">
+            <button onClick={() => navigate("/login")} className="block md:hidden w-[90%] bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">
                     Experimente o Growthness
             </button>       
         </section>

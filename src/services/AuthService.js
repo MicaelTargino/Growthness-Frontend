@@ -52,3 +52,19 @@ export const handleGoogleLogin = async (response) => {
       throw error;  // Ensure the error is passed back for handling
   }
 };
+
+// Check if user data is empty
+export const userDataIsEmpty = async () => {
+  try {
+    // Make an authenticated request to the backend to check if user data is empty
+    const response = await axiosInstance.get('http://localhost:8000/auth/is_user_data_empty');
+
+    // Response should contain the 'is_user_data_empty' field
+    return response.data.is_user_data_empty;
+
+  } catch (error) {
+    console.error("Error checking user data:", error);
+    throw error; // Handle or rethrow the error for the calling function to manage
+  }
+};
+
