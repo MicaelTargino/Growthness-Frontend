@@ -31,36 +31,41 @@ const Home = () => {
         navigate('/profile');
     }
 
+
     useEffect(() => {
-        const user_is_empty = userDataIsEmpty();
-        if (user_is_empty) navigate('/demo');
+        async function init() {
+            try {
+                // Check if user data is empty
+                const user_is_empty = await userDataIsEmpty();
+                // alert(user_is_empty);
+                if (user_is_empty) {
+                    navigate('/demo');
+                    return; // Exit if user data is empty
+                }
 
-        const getProfileCompletionData =  async () => {
-            const userData = await fetchUserStatus();
-            setUserProfileCompletionInfo(userData);
-        }
-        getProfileCompletionData();
+                // Fetch multiple data in parallel
+                const [userProfile, habitsStatus, exercises, diets] = await Promise.all([
+                    fetchUserStatus(),
+                    fetchHabitsStatus(),
+                    fetchExercises(),
+                    fetchMeals(),
+                ]);
 
-        const getHabitsStatusData = async () => {
-            const data = await fetchHabitsStatus();
-            setDailyHabits(data);
-        }
-        getHabitsStatusData()
+                // Set the fetched data to state
+                setUserProfileCompletionInfo(userProfile);
+                setDailyHabits(habitsStatus);
+                setExercises(exercises);
+                setMeals(diets);
 
-        const getExercisesData = async () => {
-            const data = await fetchExercises();
-            console.log(data) // this prints the correct data
-            setExercises(data);
+                console.log("Data fetched successfully.");
+            } catch (error) {
+                console.error("Error during initialization:", error);
+            }
         }
-        getExercisesData()
 
-        const getDietsData = async () => {
-            const data = await fetchMeals ();
-            console.log(data) // this prints the correct data
-            setMeals(data);
-        }
-        getDietsData()
-    }, [])
+        init();
+    }, []); // Runs once when the component mounts
+
 
     return (
         <MainLayout sectionActive="Dashboard">

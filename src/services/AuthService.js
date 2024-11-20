@@ -7,6 +7,9 @@ export const IsAuthenticated = () => {
 
 // Register User
 export const registerUser = async (userData) => {
+    localStorage.removeItem('growthness_access_token');
+    localStorage.removeItem('growthness_refresh_token');
+    axiosInstance.defaults.headers['Authorization'] = '';
     const response = await axiosInstance.post('/auth/register/', userData);
     return response.data;
 };

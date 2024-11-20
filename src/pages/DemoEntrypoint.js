@@ -88,7 +88,8 @@ const DemoEntrypoint = () => {
             // const res = await updateUserData(userData);  // Send updated data to the backend
             // notify('success', 'Dados gerados com sucesso.', 'bottom-right');
         } catch (err) {
-            // notify('error', 'Erro ao atualizar perfil.', 'bottom-right');
+            setLoading(false);
+            notify('error', 'Ocorreu um erro, tente novamente mais tarde.', 'bottom-right');
         }
     };
 
@@ -191,7 +192,7 @@ const DemoEntrypoint = () => {
                                 </div>
 
                             {/* Available workout days */}
-                            <div className="flex flex-col max-w-[250px] mt-6">
+                            {/* <div className="flex flex-col max-w-[250px] mt-6">
                                 <h2 className="text-xl font-semibold mb-3 select-none">Dias disponíveis para treinar:</h2>
                                 <div className="grid grid-cols-2 gap-2">
                                     {['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'].map(day => (
@@ -206,8 +207,8 @@ const DemoEntrypoint = () => {
                                         </label>
                                     ))}
                                 </div>
-                            </div>
-                            <div className="flex flex-col w-full max-w-[250px] mt-6">
+                            </div> */}
+                            <div className="flex flex-col w-full max-w-[550px] mt-6">
                                 <h2 className="text-xl font-semibold mb-3 select-none">Você possui alguma comorbidade física?</h2>
                                 <label className="mb-2 text-gray-700" htmlFor="comorbidade">
                                     Descreva abaixo, se houver:
