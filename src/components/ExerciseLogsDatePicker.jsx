@@ -13,7 +13,7 @@ import {
   PopoverTrigger,
 } from "../components/ui/popover";
 
-export function DatePickerDemo({
+export function ExercisesDatePickerDemo({
   placeholder,
   description,
   selectedDate,
@@ -21,12 +21,22 @@ export function DatePickerDemo({
 }) {
   const [date, setDate] = React.useState();
   const [year, setYear] = React.useState(new Date().getFullYear()); // State for the year
+  const [dateSelected, setDateSelected] = React.useState(selectedDate);
 
+  React.useEffect(() => {
+    setDateSelected(selectedDate);
+  }, selectedDate)
+
+
+  console.log(dateSelected)
   // Handle year change
   const handleYearChange = (event) => {
     const newYear = event.target.value;
     setYear(newYear);
-    const newDate = new Date(selectedDate || new Date());
+    const newDate = selectedDate || new Date();
+    newDate.setHours(12, 0, 0, 0);
+
+    console.log(newDate)
     newDate.setFullYear(newYear);
     onDateChange(newDate); // Update the selected date with the new year
   };
@@ -42,9 +52,9 @@ export function DatePickerDemo({
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {selectedDate ? (
+          {dateSelected ? (
             <p>
-              {description}: {format(selectedDate, "dd/MM/yyyy")}
+              {description}: {format(dateSelected, "dd/MM/yyyy")}
             </p>
           ) : (
             <p>{placeholder}</p>
@@ -74,7 +84,7 @@ export function DatePickerDemo({
 
         <Calendar
           mode="single"
-          selected={selectedDate || date}
+          selected={dateSelected || date}
           onSelect={onDateChange}
           initialFocus
         />

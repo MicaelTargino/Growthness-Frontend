@@ -10,6 +10,9 @@ import PasswordResetRequest from './pages/PasswordResetRequest';
 import PasswordResetConfirm from './pages/PasswordResetConfirm';
 import ProfilePage from './pages/ProfilePage';
 import HabitPage from './pages/Habit';
+import DemoEntrypoint from './pages/DemoEntrypoint';
+import ExercisePage from './pages/ExercisePage';
+import MealPage from './pages/MealPage';
 
 
 const App = () => {
@@ -19,6 +22,7 @@ const App = () => {
                 {/* standard routes */}
                 <Route path="/" element={<Marketing />} />
                 <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                <Route path="/demo" element={<ProtectedRoute><DemoEntrypoint /></ProtectedRoute>} />
 
                 {/* authentication routes */}
                 <Route path="/login" element={<Login />} />
@@ -32,6 +36,13 @@ const App = () => {
 
                 {/* habits routes */}
                 <Route path="/habit/:habitId" element={<HabitPage />} />
+                
+                {/* exercises routes */}
+                <Route path="/exercise/:exerciseId" element={<ExercisePage />} />
+
+                {/* meals routes */}
+                <Route path="/meal/:mealId" element={<MealPage />} />
+
             </Routes>
         </Router>
     );

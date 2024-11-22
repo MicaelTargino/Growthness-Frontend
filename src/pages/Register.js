@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { notify } from '../services/toastService';
 import { ToastContainer } from 'react-toastify';
 import NavHeader from '../components/NavHeader';
+import { GoogleLoginBtn } from '../components/GoogleLogin';
 
 
 const Register = () => {
@@ -27,8 +28,8 @@ const Register = () => {
     try {
       await registerUser(formData);
 
-      await loginUser(formData);  
-      navigate('/home')    
+      navigate('/login ')    
+      // await loginUser(formData);  
 
     } catch (error) {
       notify('error', error.response.data.message, 'bottom-right');
@@ -54,6 +55,7 @@ const Register = () => {
               <p className="text-gray-900 mt-4"> Já tem uma conta? <a onClick={GoToLogin} className=" cursor-pointer text-sm text-blue-500 -200 hover:underline mt-4">Fazer login</a></p>
             </div>
             <button type="submit" className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">Registrar</button>
+            {/* <GoogleLoginBtn className="mt-2" /> */}
           </div>
         </div>
       </form>
