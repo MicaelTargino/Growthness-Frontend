@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../services/authService';
+import { loginUser, userDataIsEmpty } from '../services/authService';
 import { HeartHandshake } from 'lucide-react';
 import FullLogo from '../components/FullLogo';
 import { notify } from '../services/toastService';
@@ -24,8 +24,15 @@ const Login = () => {
     }
 
     try {
-      await loginUser(formData);  
-      navigate('/demo')    
+      await loginUser(formData); 
+
+      let destiny = '/home';
+      if (await userDataIsEmpty()) {
+        destiny = '/demo';
+      }
+
+      navigate(destiny)
+
 
     } catch (error) {
       try {
