@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Maps port 3000 on the host to port 3000 in the container
+    restart: unless-stopped
