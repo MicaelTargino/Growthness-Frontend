@@ -40,7 +40,7 @@ export const handleGoogleLogin = async (response) => {
 
   try {
       // Send the token to the backend
-      const res = await axiosInstance.post('http://localhost:8000/auth/google/google-oauth2/', {
+      const res = await axiosInstance.post('/auth/google/google-oauth2/', {
           access_token: token
       });
 
@@ -60,7 +60,7 @@ export const handleGoogleLogin = async (response) => {
 export const userDataIsEmpty = async () => {
   try {
     // Make an authenticated request to the backend to check if user data is empty
-    const response = await axiosInstance.get('http://localhost:8000/auth/is_user_data_empty');
+    const response = await axiosInstance.get('/auth/is_user_data_empty');
 
     // Response should contain the 'is_user_data_empty' field
     return response.data.is_user_data_empty;
