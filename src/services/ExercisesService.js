@@ -24,6 +24,21 @@ export const getExerciseData = async (exerciseId) => {
     }
 }
 
+
+export const deleteExercise = async (exerciseId) => {
+    try {
+        // Send a GET request to the backend with the day of the week as a query parameter
+        const response = await axiosInstance.delete(`exercises/routines-exercises/${exerciseId}`);
+        // console.log(response.data)
+        return response;
+    } catch (error) {
+        console.error('Deleting exercise error:', error);
+        throw error;
+    }
+}
+
+
+
 export const getExerciseLogsGraphData = async (exerciseId, dateStep, startDateRange) => {
     try {
         const response = await axiosInstance.get(`exercises/routines-exercises/${exerciseId}/exercise-graph-logs/?dateStep=${dateStep}&startDateRange=${startDateRange}`);
@@ -45,3 +60,4 @@ export const createExerciseLog = async (logData) => {
       throw error;
     }
   };
+

@@ -8,9 +8,10 @@ import FrequencyBadge from "../components/FrequencyBadge";
 import HabitLogsLineChart from "../components/HabitLogsLineChart";
 import CreateHabitDialog from "../components/CreateHabitDialog";
 import CreateHabitLogDialog from "../components/CreateHabitLogDialog";
-import { getExerciseData } from "../services/ExercisesService";
+import { deleteExercise, getExerciseData } from "../services/ExercisesService";
 import ExerciseLogsLineChart from "../components/ExerciseLogsLineChart";
 import CreateExerciseLogDialog from "../components/CreateExerciseLogDialog";
+import { notify } from "../services/toastService";
 
 const ExercisePage = () => {
     const navigate = useNavigate();
@@ -33,6 +34,17 @@ const ExercisePage = () => {
         };
         initPage();
     }, [exerciseId]);
+
+    const handleDeleteExercise = async () => {
+        const res = await deleteExercise(exerciseId);
+        console.log(res);
+        console.log(res.status);
+        if (res.status == 204) {
+            navigate('/home');
+        } else {
+            notify('error', 'Erro ao deletar exercício', 'bottom-right');
+        }
+    }
 
     // Update chartStartDate and chartDateStep based on selection
     const changeChart = (e) => {
@@ -81,7 +93,7 @@ const ExercisePage = () => {
                             size={26}
                             className="text-[#417ff6] cursor-pointer hover:scale-105"
                         /> */}
-                        <Trash className="text-red-600 hover:scale-105 transition-all cursor-pointer" />
+                        <Trash onClick={handleDeleteExercise} className="text-red-600 hover:scale-105 transition-all cursor-pointer" />
                     </h2>
                 </div>
                 <div className="relative w-[80%] mt-6 flex flex-col items-center justify-center">
