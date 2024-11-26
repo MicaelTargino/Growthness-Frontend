@@ -32,12 +32,14 @@ const PasswordResetRequest = () => {
     );
 
     try {
-      const response = await axiosInstance.post('/password-reset-request/', { email });
+      const response = await axiosInstance.post('/auth/password-reset-request/', { email });
       setMessage('Password reset link has been sent to your email.');
       setButtonInnerHTML("Enviado!");
       notify('success', "Email enviado com sucesso!", 'bottom-right');
     } catch (error) {
-      setError('Failed to send password reset email. Please check if the email is correct.');
+      setButtonInnerHTML("Enviar email");
+      setError('Não há nenhum usuário com este email.');
+
     }
   };
 
@@ -55,6 +57,9 @@ const PasswordResetRequest = () => {
                 <button type="submit" className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150">
                   {buttonInnerHtml}
                 </button>
+                <span className='text-red-500 text-center'>
+                  {error && error}
+                </span>
               </div>
           </div>
       </form>

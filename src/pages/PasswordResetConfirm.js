@@ -42,7 +42,7 @@ const PasswordResetConfirm = () => {
     }
 
     try {
-      const response = await axiosInstance.post(`password-reset-confirm/`, {
+      const response = await axiosInstance.post(`/auth/password-reset-confirm/`, {
         new_password: formData.password,
         confirm_password: formData.password2,
         uid: uid,
