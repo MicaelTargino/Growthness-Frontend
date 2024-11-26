@@ -79,10 +79,13 @@ export const createExerciseLog = async (logData) => {
 export async function createExercise(exerciseData, routineId) {
   try {
 
+    console.log(exerciseData); 
+    let myCleanedData = removeEmptyValues(exerciseData);
+    
     // Step 1: Create the exercise
-    const exerciseResponse = await axiosInstance.post("/exercises/exercises/", exerciseData);
+    const exerciseResponse = await axiosInstance.post("/exercises/exercises/", myCleanedData);
     const exerciseId = exerciseResponse.data.id;
-
+    
     // Step 2: Link the exercise to the routine
     const enhancedData = {
         routine: routineId,
@@ -90,10 +93,12 @@ export async function createExercise(exerciseData, routineId) {
         day_of_week: exerciseData.day_of_week,
         ...exerciseData, // Include any additional data relevant to the exercise
       }
+    let cleanedData = removeEmptyValues(enhancedData);
     
     // Remove keys with null or "" values
-    const cleanedData = removeEmptyValues(enhancedData);
+
     console.log(cleanedData);
+
     const routineExerciseResponse = await axiosInstance.post(
       "/exercises/routines-exercises/",
       cleanedData
