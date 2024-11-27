@@ -8,7 +8,7 @@ import { getExerciseLogsGraphData } from '../services/ExercisesService';
 // Register the required chart components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, annotationPlugin);  // Register the annotation plugin
 
-const ExerciseLogsLineChart = ({ exerciseId, title, label, measure="kg", dateStep = "1", startDateRange = "7", goalValue = 10}) => {
+const ExerciseLogsLineChart = ({ exerciseId, title, label, measure, dateStep = "1", startDateRange = "7", goalValue = 10}) => {
   const [exerciseData, setExerciseData] = useState([])
   // Helper function to generate the last 'n' dates in 'dd/mm' format
   const getLastNDates = (n, step) => {
@@ -35,7 +35,6 @@ const ExerciseLogsLineChart = ({ exerciseId, title, label, measure="kg", dateSte
     }
 
     getData()
-
   }, [startDateRange])
 
   // Ensure exerciseData is the correct length, matching the labels array
@@ -60,7 +59,7 @@ const ExerciseLogsLineChart = ({ exerciseId, title, label, measure="kg", dateSte
         borderColor: 'rgba(75,192,192,1)',
       },
       {
-        label: `Objetivo (em ${measure="kg"})`,
+          label: `Objetivo (em ${measure})`,
         data: new Array(labels.length).fill(goalValue),  // Repeat the goalValue across all dates
         fill: false,
         backgroundColor: 'rgb(65, 127, 246)',

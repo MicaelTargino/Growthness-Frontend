@@ -79,6 +79,8 @@ const ExercisePage = () => {
                             {`${exercise.exercise_name} `}  
                             {exercise.weight_goal && exercise.weight_goal}
                             {exercise.weight_goal && ("kg")} 
+                            {exercise.distance && exercise.distance}
+                            {exercise.distance && ("km")}
                             {exercise.reps_goal && exercise.weight_goal && (" x ")} 
                             {exercise.reps_goal && exercise.reps_goal}
                             {exercise.reps_goal && " reps"}
@@ -88,7 +90,7 @@ const ExercisePage = () => {
                             {/* {Math.min(habitCompletion.percentage_completion, 100)}%  */}
                         {/* </span> */}
                         {/* <CreateHabitLogDialog measure={habit.measure} habitId={habitId} /> */}
-                        <CreateExerciseLogDialog routineExerciseId={exerciseId} />
+                        <CreateExerciseLogDialog exerciseType={exercise.type} routineExerciseId={exerciseId} />
                         {/* <PlusSquareIcon
                             size={26}
                             className="text-[#417ff6] cursor-pointer hover:scale-105"
@@ -111,11 +113,11 @@ const ExercisePage = () => {
                     <ExerciseLogsLineChart
                         exerciseId={exerciseId}
                         title={`histórico de ${exercise.exercise_name}`}
-                        measure={"Kg"}
+                        measure={exercise.type == 'cardio' ? "km" : "kg"}
                         dateStep={chartDateStep}
                         startDateRange={chartStartDate}
-                        defaultGoalValue={exercise.weight_goal}
-                        label={`Quantidade (em Kg) `}
+                        goalValue={exercise.type == 'gym' ? exercise.weight_goal : exercise.distance}
+                        label={`Quantidade (em ${exercise.type == 'cardio' ? "km" : "kg"}) `}
                     />
                 </div>
             </section>

@@ -23,6 +23,13 @@ export const getExerciseData = async (exerciseId) => {
     try {
         // Send a GET request to the backend with the day of the week as a query parameter
         const response = await axiosInstance.get(`exercises/routines-exercises/${exerciseId}`);
+        
+        if(!(response.data.weight_goal  && response.data.reps_goal)) {
+          response.data.type = 'cardio'
+        } else {
+          response.data.type = 'gym'
+        }
+        
         console.log(response.data)
         return response.data;
     } catch (error) {
