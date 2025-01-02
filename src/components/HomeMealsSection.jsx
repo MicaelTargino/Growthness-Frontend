@@ -22,7 +22,7 @@ const HomeMealsSection = ({ name, meals }) => {
         <section className="min-w-[270px] w-[24%] max-w-[300px] p-4 rounded-xl shadow-md hover:shadow-lg border-2 hover:scale-105 transition-all min-h-60 h-auto">
             <h4 className='text-slate-800 font-bold text-xl mb-4 flex items-center gap-2'>
                 {name} 
-                <PlusSquareIcon size={26} className="text-[#417ff6] cursor-pointer hover:scale-105" />
+                {/* <PlusSquareIcon size={26} className="text-[#417ff6] cursor-pointer hover:scale-105" /> */}
             </h4>
             <ul>
                 {mealsData && mealsData.length > 0 ? (

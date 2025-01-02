@@ -40,6 +40,9 @@ const NavProfileDropdown = () => {
         logoutUser();
         navigate('/login');
     }
+    const goToProfile = () => {
+        navigate('/profile');
+    }
 
     return (
     <DropdownMenu>
@@ -52,14 +55,14 @@ const NavProfileDropdown = () => {
         <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer transition-all hover:bg-slate-50">
+          <DropdownMenuItem onClick={() => goToProfile()} className="cursor-pointer transition-all hover:bg-slate-50">
             <User className="mr-2 h-4 w-4" />
             <span>Perfil</span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer transition-all hover:bg-slate-50">
-            <Bell className="mr-2 h-4 w-4" />
-            <span>Notificações</span>
-          </DropdownMenuItem>
+          {/* <DropdownMenuItem className="cursor-pointer transition-all hover:bg-slate-50"> */}
+            {/* <Bell className="mr-2 h-4 w-4" /> */}
+            {/* <span>Notificações</span> */}
+          {/* </DropdownMenuItem> */}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-700 hover:text-red-700">

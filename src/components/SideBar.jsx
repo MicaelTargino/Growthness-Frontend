@@ -33,11 +33,11 @@ const SideBar = ({SectionActive=""}) => {
         >
 
         </SideBarItem>
-        <SideBarItem
+        {/* <SideBarItem
           Icon={SettingsIcon}
           text="Configurações"
           active={SectionActive == "Settings"}
-          />
+          /> */}
         <SideBarItem
           handleClick={handleLogout}
           Icon={LogOutIcon}
